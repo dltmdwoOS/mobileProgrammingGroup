@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:teamproject/widget/currencyWidget.dart';
 
+import 'calendar_screen.dart';
 
 class Budgetwidget extends StatefulWidget {
   final String country;
@@ -53,7 +54,6 @@ class _Budgetwidget extends State<Budgetwidget> {
               child: Text(selectedCurrency == null
                   ? '통화 선택'
                   : '선택된 통화: $selectedCurrency'),
-
             ),
 
             SizedBox(height: 20),
@@ -81,21 +81,16 @@ class _Budgetwidget extends State<Budgetwidget> {
               onPressed: () {
                 String budget = budgetController.text;
                 if (budget.isNotEmpty && selectedCurrency != null) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('입력된 정보'),
-                        content: Text(
-                            '국가: ${widget.country}\n주: ${widget.state}\n통화: $selectedCurrency\n예산: $budget'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text('확인'),
-                          ),
-                        ],
-                      );
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CalendarPage(
+                        country: widget.country,
+                        state: widget.state,
+                        currency: selectedCurrency!,
+                        budget: budget,
+                      ),
+                    ),
                   );
                 }
               },
