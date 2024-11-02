@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:csc_picker/csc_picker.dart';
-import 'package:teamproject/widget/countryWidget.dart';
+import 'screen/select_location_screen.dart';
 
 void main() {
   runApp(MyApp());

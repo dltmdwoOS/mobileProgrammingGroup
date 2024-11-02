@@ -33,7 +33,8 @@ dependencies:
   csc_picker: ^0.2.7
   currency_picker: ^2.0.21
   table_calendar: ^3.0.7
-
+  http: ^0.13.3
+  path_provider: ^2.0.11
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
