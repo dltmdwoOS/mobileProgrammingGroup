@@ -25,8 +25,8 @@ class TravelOptionsPage extends StatefulWidget {
 }
 
 class _TravelOptionsPageState extends State<TravelOptionsPage> {
-  String? selectedCompanion; // "누구와" 선택된 값
-  String? selectedStyle;     // "여행 스타일" 선택된 값
+  String? selectedCompanion;
+  String? selectedStyle;
 
   // 선택 가능한 옵션 리스트
   final List<String> companions = ['Alone', 'With friend', 'with lover', 'with spouse', 'with children', 'with parents'];
