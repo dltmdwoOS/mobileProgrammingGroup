@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'travel_option_screen.dart';
 class CalendarPage extends StatefulWidget {
+  final String planName;
   final String country;
   final String state;
   final String currency;
   final String budget;
 
   CalendarPage({
+    required this.planName,
     required this.country,
     required this.state,
     required this.currency,
@@ -121,6 +123,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => TravelOptionsPage(
+                        planName: widget.planName,
                         country: widget.country,
                         state: widget.state,
                         currency: widget.currency,

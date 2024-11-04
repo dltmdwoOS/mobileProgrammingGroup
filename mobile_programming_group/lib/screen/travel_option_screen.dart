@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'travel_summary_screen.dart';
 
 class TravelOptionsPage extends StatefulWidget {
+  final String planName;
   final String country;
   final String state;
   final String currency;
@@ -10,6 +11,7 @@ class TravelOptionsPage extends StatefulWidget {
   final DateTime arrivalDate;
 
   TravelOptionsPage({
+    required this.planName,
     required this.country,
     required this.state,
     required this.currency,
@@ -96,6 +98,7 @@ class _TravelOptionsPageState extends State<TravelOptionsPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => TravelSummaryPage(
+                      planName: widget.planName,
                       country: widget.country,
                       state: widget.state,
                       currency: widget.currency,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../service/file_service.dart';
+import '../service/shared_preferences_service.dart';
 import 'result_screen.dart';
 
 class TravelSummaryPage extends StatelessWidget {
+  final String planName;
   final String country;
   final String state;
   final String currency;
@@ -14,6 +14,7 @@ class TravelSummaryPage extends StatelessWidget {
   final String style;
 
   TravelSummaryPage({
+    required this.planName,
     required this.country,
     required this.state,
     required this.currency,
@@ -54,11 +55,15 @@ class TravelSummaryPage extends StatelessWidget {
               child: Text('Back'),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                List<String> planNames = await SharedPrefUtil.getPlanNames();
+                planNames.add(planName);
+                await SharedPrefUtil.savePlanNames(planNames);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TextProcessingApp(
+                    builder: (context) => ResultScreen(
+                      planName: planName,
                       country: country,
                       state: state,
                       currency: currency,

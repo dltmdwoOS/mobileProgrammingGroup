@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../service/file_service.dart';
 
-class TextProcessingApp extends StatefulWidget {
+class ResultScreen extends StatefulWidget {
+  final String planName;
   final String country;
   final String state;
   final String currency;
@@ -13,7 +14,8 @@ class TextProcessingApp extends StatefulWidget {
   final String companion;
   final String style;
 
-  TextProcessingApp({
+  ResultScreen({
+    required this.planName,
     required this.country,
     required this.state,
     required this.currency,
@@ -25,10 +27,10 @@ class TextProcessingApp extends StatefulWidget {
   });
 
   @override
-  _TextProcessingAppState createState() => _TextProcessingAppState();
+  _ResultScreenState createState() => _ResultScreenState();
 }
 
-class _TextProcessingAppState extends State<TextProcessingApp> {
+class _ResultScreenState extends State<ResultScreen> {
   final TextEditingController _controller = TextEditingController();
   String _response = "";
   bool _isLoading = false;
@@ -67,8 +69,7 @@ class _TextProcessingAppState extends State<TextProcessingApp> {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         String path = "outputs";
-        int fileCount = await countFiles(path);
-        await saveJsonToFile(responseData, "$path/plan_${fileCount+1}");
+        await saveJsonToFile(responseData, "$path/${widget.planName}");
         setState(() {
           _response = "Data saved successfully!";
         });
@@ -90,6 +91,7 @@ class _TextProcessingAppState extends State<TextProcessingApp> {
 
   @override
   Widget build(BuildContext context) {
+    processText();
     return Scaffold(
       appBar: AppBar(title: Text("Text Processing App")),
       body: _isLoading
@@ -110,7 +112,7 @@ class _TextProcessingAppState extends State<TextProcessingApp> {
             SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                processText();
+
               },
               child: Text("Process Text"),
             ),

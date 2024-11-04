@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screen/select_location_screen.dart';
+import 'widget/plan_add_button_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,16 +25,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Screen'),
         actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              // 플러스 아이콘 클릭 시 CscPickerScreen으로 이동
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SelectLocationScreen()),
-              );
-            },
-          ),
+          PlanAddButton(),
         ],
       ),
       body: Center(

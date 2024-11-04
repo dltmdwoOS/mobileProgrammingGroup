@@ -4,10 +4,11 @@ import '../widget/currencyWidget.dart';
 import 'calendar_screen.dart';
 
 class Budgetwidget extends StatefulWidget {
+  final String planName;
   final String country;
   final String state;
 
-  Budgetwidget({required this.country, required this.state});
+  Budgetwidget({required this.planName, required this.country, required this.state});
 
   @override
   _Budgetwidget createState() => _Budgetwidget();
@@ -83,6 +84,7 @@ class _Budgetwidget extends State<Budgetwidget> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => CalendarPage(
+                        planName: widget.planName,
                         country: widget.country,
                         state: widget.state,
                         currency: selectedCurrency!,

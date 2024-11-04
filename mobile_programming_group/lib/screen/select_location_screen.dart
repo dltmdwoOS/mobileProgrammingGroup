@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'budget_screen.dart';
 
 class SelectLocationScreen extends StatefulWidget {
+  final String planName;
+  SelectLocationScreen({required this.planName});
   @override
   _SelectLocationScreenState createState() => _SelectLocationScreenState();
 }
@@ -71,6 +73,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Budgetwidget(
+                        planName: widget.planName,
                         country: countryValue,
                         state: stateValue,
                       ),
