@@ -31,7 +31,6 @@ class _ResultScreenState extends State<ResultScreen> {
         data = result;
       });
     } catch (e) {
-      // 디버깅을 위한 로그 출력
       print("Error loading data: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to load data: $e")),
@@ -63,15 +62,30 @@ class _ResultScreenState extends State<ResultScreen> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Divider(),
-                  ...daySchedule.entries.map((entry) {
-                    return Padding(
+                  if (daySchedule.containsKey('Morning'))
+                    Padding(
                       padding: EdgeInsets.symmetric(vertical: 4),
                       child: Text(
-                        '${entry.key}: ${entry.value}',
+                        'Morning: ${daySchedule['Morning']}',
                         style: TextStyle(fontSize: 16),
                       ),
-                    );
-                  }).toList(),
+                    ),
+                  if (daySchedule.containsKey('Afternoon'))
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4),
+                      child: Text(
+                        'Afternoon: ${daySchedule['Afternoon']}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  if (daySchedule.containsKey('Night'))
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4),
+                      child: Text(
+                        'Night: ${daySchedule['Night']}',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )
                 ],
               ),
             ),
