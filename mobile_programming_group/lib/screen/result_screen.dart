@@ -40,14 +40,20 @@ class _ResultScreenState extends State<ResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> sortedKeys = data!.keys.toList()
+      ..sort((a, b) {
+        DateTime dateA = DateTime.parse('2024-${a.split('/')[0].padLeft(2, '0')}-${a.split('/')[1].padLeft(2, '0')}');
+        DateTime dateB = DateTime.parse('2024-${b.split('/')[0].padLeft(2, '0')}-${b.split('/')[1].padLeft(2, '0')}');
+        return dateA.compareTo(dateB);
+      });
     return Scaffold(
       appBar: AppBar(title: Text('Travel Summary')),
       body: data == null
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-        itemCount: data!.length,
+        itemCount: sortedKeys.length,
         itemBuilder: (context, index) {
-          String date = data!.keys.elementAt(index);
+          String date = sortedKeys[index];
           Map<String, dynamic> daySchedule = data![date]!;
 
           return Card(
